@@ -1,26 +1,34 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <search @fetch-gifs="onFetch" />
+  <gif-list :gifs="gifs" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Search from "@/components/Search";
+import GifList from "@/components/GifList";
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    GifList,
+    Search,
+  },
+  data() {
+    return {
+      gifs: [],
+    };
+  },
+  methods:{
+    onFetch(result){
+      this.gifs = result
+    }
   }
-}
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  box-sizing: border-box;
+}
+body {
+  padding: 50px;
 }
 </style>
